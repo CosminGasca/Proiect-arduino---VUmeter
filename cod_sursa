@@ -1,0 +1,386 @@
+
+
+#include <LiquidCrystal.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#define I2C_ADDR 0x27 // Adresa I2C a modulului LCD
+// Definirea numărului de coloane și rânduri ale LCD-ului
+#define LCD_COLS 18
+#define LCD_ROWS 2
+// Inițializarea LCD-ului cu I2C
+LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLS, LCD_ROWS);
+const int pinMicrofon = A0; // Pinul la care este conectat microfonul
+int counter = 0;
+const int buttonPin2 = 2; // Pinul pe care este conectat butonul
+const int buttonPin3 = 3;
+bool buttonState2 = LOW; 
+bool buttonState3 = LOW; 
+int var = 0;
+bool modLiberActivat = false;
+
+
+void mod_liber()
+{
+    // Citim valoarea analogică de la pinul A0
+    float valoareCitita = analogRead(pinMicrofon);
+    Serial.println(valoareCitita);
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("val microfon:(1)");
+    lcd.setCursor(0, 1);
+    lcd.print(valoareCitita);
+
+    if (valoareCitita <= 540)
+    {
+      
+        digitalWrite(5, HIGH);
+       // delay(10);
+        digitalWrite(6, LOW);
+       // delay(10);
+        digitalWrite(7, LOW);
+       // delay(10);
+        digitalWrite(8, LOW);
+       // delay(10);
+        digitalWrite(9, LOW);
+       // delay(10);
+        digitalWrite(10, LOW);
+       // delay(10);
+        digitalWrite(11, LOW);
+       // delay(10);
+    }
+
+    else if (valoareCitita > 540 && valoareCitita < 600)
+    {
+  
+      
+        digitalWrite(5, HIGH);
+       // delay(10);
+        digitalWrite(6, HIGH);
+       // delay(10);
+        digitalWrite(7, LOW);
+       // delay(10);
+        digitalWrite(8, LOW);
+       // delay(10);
+        digitalWrite(9, LOW);
+       // delay(10);
+        digitalWrite(10, LOW);
+       // delay(10);
+        digitalWrite(11, LOW);
+       // delay(10);
+    }
+
+    else if (valoareCitita > 600 && valoareCitita < 700)
+    {
+
+        
+        digitalWrite(5, HIGH);
+       // delay(10);
+        digitalWrite(6, HIGH);
+       // delay(10);
+
+        digitalWrite(7, HIGH);
+       // delay(10);
+        digitalWrite(8, LOW);
+       // delay(10);
+        digitalWrite(9, LOW);
+       // delay(10);
+        digitalWrite(10, LOW);
+       // delay(10);
+        digitalWrite(11, LOW);
+       // delay(10);
+    }
+
+    else if (valoareCitita > 700 && valoareCitita < 800)
+    {
+
+       // delay(10);
+        digitalWrite(5, HIGH);
+       // delay(10);
+        digitalWrite(6, HIGH);
+       // delay(10);
+        digitalWrite(7, HIGH);
+       // delay(10);
+        digitalWrite(8, HIGH);
+       // delay(10);
+        digitalWrite(9, HIGH);
+       // delay(10);
+        digitalWrite(10, LOW);
+       // delay(10);
+        digitalWrite(11, LOW);
+       // delay(10);
+    }
+
+    else if (valoareCitita > 1000)
+    {
+
+       // delay(10);
+        digitalWrite(5, HIGH);
+       // delay(10);
+        digitalWrite(6, HIGH);
+       // delay(10);
+        digitalWrite(7, HIGH);
+       // delay(10);
+        digitalWrite(8, HIGH);
+       // delay(10);
+        digitalWrite(9, HIGH);
+       // delay(10);
+        digitalWrite(10, HIGH);
+       // delay(10);
+        digitalWrite(11, HIGH);
+       // delay(10);
+    }
+}
+void mod_limitare()
+{
+
+    float valoareCitita = 0;
+    var = 0;
+    counter=0;
+    while(counter <= 3)
+    {
+        Serial.println(valoareCitita);
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("val microfon:(2)");
+        lcd.setCursor(0, 1);
+        lcd.print(valoareCitita);
+        valoareCitita = analogRead(pinMicrofon);
+        if (valoareCitita <= 540)
+        {
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, LOW);
+           // delay(10);
+            digitalWrite(7, LOW);
+           // delay(10);
+            digitalWrite(8, LOW);
+           // delay(10);
+            digitalWrite(9, LOW);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+
+        else if (valoareCitita > 540 && valoareCitita < 600)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+            digitalWrite(7, LOW);
+           // delay(10);
+            digitalWrite(8, LOW);
+           // delay(10);
+            digitalWrite(9, LOW);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+
+        else if (valoareCitita > 600 && valoareCitita < 700)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+
+            digitalWrite(7, HIGH);
+           // delay(10);
+            digitalWrite(8, LOW);
+           // delay(10);
+            digitalWrite(9, LOW);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+
+        else if (valoareCitita > 700 && valoareCitita < 800)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+        
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+            digitalWrite(7, HIGH);
+           // delay(10);
+            digitalWrite(8, HIGH);
+           // delay(10);
+            digitalWrite(9, LOW);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+
+
+        else if (valoareCitita > 800 && valoareCitita < 900)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+            digitalWrite(7, HIGH);
+           // delay(10);
+            digitalWrite(8, HIGH);
+           // delay(10);
+            digitalWrite(9, HIGH);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+   
+      
+        else if (valoareCitita > 900 && valoareCitita < 1000)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+            digitalWrite(7, HIGH);
+           // delay(10);
+            digitalWrite(8, HIGH);
+           // delay(10);
+            digitalWrite(9, HIGH);
+           // delay(10);
+            digitalWrite(10, LOW);
+           // delay(10);
+            digitalWrite(11, LOW);
+           // delay(10);
+        }
+
+
+
+        else if (valoareCitita > 1000)
+        {
+
+           // delay(10);
+            digitalWrite(5, HIGH);
+           // delay(10);
+            digitalWrite(6, HIGH);
+           // delay(10);
+            digitalWrite(7, HIGH);
+           // delay(10);
+            digitalWrite(8, HIGH);
+           // delay(10);
+            digitalWrite(9, HIGH);
+           // delay(10);
+            digitalWrite(10, HIGH);
+           // delay(10);
+            digitalWrite(11, HIGH);
+           // delay(10);
+           counter++;
+          
+        
+
+        }
+    }
+        
+
+        var = 1;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("nivel depasit(2)");
+       
+        
+
+}
+
+
+void setup()
+{
+
+    Serial.begin(9600); // Inițializăm comunicarea serială pentru a putea transmite date la calculator
+    pinMode(12, OUTPUT);
+    pinMode(11, OUTPUT);
+    pinMode(10, OUTPUT);
+    pinMode(9, OUTPUT);
+    pinMode(8, OUTPUT);
+    pinMode(7, OUTPUT);
+    
+    Wire.begin();
+
+    // Inițializarea și pornirea LCD-ului
+    lcd.init();
+    lcd.backlight(); // Pornirea iluminării de fundal a LCD-ului
+    
+    pinMode(buttonPin2, INPUT);
+    pinMode(buttonPin3, INPUT);
+   // attachInterrupt(digitalPinToInterrupt(buttonPin), buttonInterrupt, CHANGE);
+
+
+    
+}
+
+void loop()
+{
+  bool buton12Apasat = digitalRead(buttonPin2);
+  bool buton3Apasat = digitalRead(buttonPin3);
+
+  if(buton12Apasat){
+    buttonState2=HIGH;
+    buttonState3=LOW;
+  }
+  else if(buton3Apasat){
+    buttonState3 = HIGH; 
+    buttonState2 = LOW;
+  }
+
+
+
+  // Verificăm dacă butonul 12 este apăsat și modul liber nu este activ
+  if (buttonState2 == HIGH && buttonState3 == LOW) {
+    mod_liber();
+    buttonState3 = LOW; 
+    
+  }
+
+  // Dacă butonul 3 este apăsat, întrerupem modul liber și trecem la modul de limitare
+  else if (buttonState3 == HIGH && buttonState2 == LOW ) {
+    mod_limitare();
+    buttonState2 = LOW;
+    if (var == 1){
+      buttonState3 = LOW;
+      
+      
+     
+    }
+
+  }
+
+
+
+}
+    
+  
+
+  
+   
+
+
+
+
+
+
+
+
+
