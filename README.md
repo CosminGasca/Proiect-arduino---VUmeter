@@ -1,0 +1,5 @@
+  Am ales ca si tema de proiect sa fac un sistem alcatuit dintr-o serie de leduri, doua butoane, un microfon si un display pentru a monitoriza nivelul sunetului primit la intrare (sunetul captat de microfon). In functie de intensitatea sunetului se vor aprinde 7 leduri colorate (3 leduri verzi, doua leduri galbene si doua leduri rosii). Daca s-au aprins toate ledurile, inclusiv ultimul led (rosu), inseamna ca avem un nivel de sunet ridicat, iar daca e aprins doar primul led (verde) inseamna ca avem un nivel de sunet scazut. 
+Sistemul poate functiona in doua moduri: 
+1.	Mod liber (ledurile se aprind asa cum am descris mai sus)
+2.	Mod limitare – ledurile se aprind, iar un counter tine evidenta numarului de aprinderi a ultimului led (rosu). Daca acest counter a ajuns la 5 (valoare prestabilita in cod) atunci procesul de achizitie de date facut de microfon se incheie, pe display fiind afisat mesajul “nivel depasit” 
+  Trecerea de la un mod la altul se realizeaza cu ajutorul a doua butoane (un buton pentru “mod limitare” si alt buton pentru a trece in “mod liber”) 
